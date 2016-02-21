@@ -17,6 +17,24 @@
 </head>
 
 <body>
+    <div class="modal fade pull-right" id="signupForm">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label=""><span>&times;</span></button>
+                    <h4 class="modal-title">Sign Up</h4>
+                </div>
+                <div class="modal-body">
+                    <div ng-controller="RegisterController">
+                        <register-form></register-form>
+                    </div>
+                </div>
+                <div class="modal-footer"></div>
+
+            </div>
+        </div>
+    </div>
+
     <nav class="navbar navbar-inverse" ng-controller="NavbarController">
         <div class="container">
             <!-- hamburger seen on mobile-->
@@ -32,27 +50,46 @@
             </div>
             <!-- login signup -->
             <div id="navbar" class="navbar-form navbar-right navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li ng-class="active('main')">
-                        <a href="#/"><span class="glyphicon glyphicon-home"></span></a>
-                    </li>
-                    <li ng-class="active('video')">
-                        <a href="#/video"><span class="glyphicon glyphicon-film"></span></a>
-                    </li>
-                    <li ng-class="active('music')">
-                        <a href="#/music"><span class="glyphicon glyphicon-headphones"></span></a>
-                    </li>
-                    <li ng-class="active('photo')">
-                        <a href="#/photo"><span class="glyphicon glyphicon-picture"></span></a>
-                    </li>
-                    <li ng-class="active('upload')">
-                        <a href="#/upload"><span class="glyphicon glyphicon-cloud-upload"></span></a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+                <div ng-controller="LoginController" ng-hide="logged">
+                    <form class="navbar-form navbar-right" id="loginForm" enctype="application/x-www-form-urlencoded">
 
+                        <div class="form-group">
+                            <input type="username" type="text" class="form-control" ng-model='uname' />
+                        </div>
+                        <div class="form-group">
+                            <input type="password" type="text" ng-model='pwd' class="form-control" />
+                        </div>
+                        <button type="submit" class="btn btn-success btn-sm" ng-click="login()">Log In</button>
+                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#signupForm">Sign Up</button>
+
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="navbar1">
+            <ul class="nav navbar-nav">
+                <li ng-class="active('main')">
+                    <a href="#/"><span class="glyphicon glyphicon-home"></span></a>
+                </li>
+                <li ng-class="active('video')">
+                    <a href="#/video"><span class="glyphicon glyphicon-film"></span></a>
+                </li>
+                <li ng-class="active('music')">
+                    <a href="#/music"><span class="glyphicon glyphicon-headphones"></span></a>
+                </li>
+                <li ng-class="active('photo')">
+                    <a href="#/photo"><span class="glyphicon glyphicon-picture"></span></a>
+                </li>
+                <li ng-class="active('upload')">
+                    <a href="#/upload"><span class="glyphicon glyphicon-cloud-upload"></span></a>
+                </li>
+            </ul>
+        </div>
+
+    </nav>
     <div ng-view></div>
 
     <!-- build:js(.) scripts/vendor.js -->
@@ -65,7 +102,12 @@
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
+
     <script src="scripts/app.js"></script>
+
+    <!--  Services-->
+    <script src="scripts/services/ajaxFactory.js"></script>
+    <script src="scripts/services/mediaService.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/controllers/upload.js"></script>
     <script src="scripts/controllers/navbar.js"></script>
@@ -75,6 +117,11 @@
     <script src="scripts/controllers/music-file.js"></script>
     <script src="scripts/controllers/photo-list.js"></script>
     <script src="scripts/controllers/photo-file.js"></script>
+
+    <script src="scripts/controllers/registerController.js"></script>
+    <script src="scripts/controllers/loginController.js"></script>
+    <script src="scripts/directive/registerForm.js"></script>
+    <script src="scripts/directive/loginForm.js"></script>
     <!-- endbuild -->
 </body>
 

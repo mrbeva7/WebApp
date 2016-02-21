@@ -2,7 +2,13 @@
     <!-- Add your site or application content here -->
     <div class="row">
         <div class="col-xs-12">
-            <input type="file" onchange="angular.element(this).scope().setImageFile(this)">
+
+            <form id="fileForm">
+                <input name="file" type="file" onchange="angular.element(this).scope().setMediaFile(this)">
+                <input name="title" type="text">
+                <input name="description" type="text">
+                <button ng-click="sendImage()">Upload</button>
+            </form>
         </div>
     </div>
     <div class="row">
@@ -89,7 +95,7 @@
                     Strength
                 </div>
                 <div class="col-xs-9">
-                    <input type="range"  ng-model="strength" step="1" min="1" max="100" ng-change="applyFilters()">
+                    <input type="range" ng-model="strength" step="1" min="1" max="100" ng-change="applyFilters()">
                 </div>
                 <div class="col-xs-1">
                     <input type="text" size="4" ng-model="strength" ng-change="applyFilters()">
@@ -101,7 +107,7 @@
                     Vignette on/off
                 </div>
                 <div class="col-xs-8">
-                    <input type="checkbox" ng-model="vignette"  ng-change="applyFilters()">
+                    <input type="checkbox" ng-model="vignette" ng-change="applyFilters()">
                 </div>
             </div>
 
