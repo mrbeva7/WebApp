@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('mobileWebApp')
-    .controller('UploadController', function ($scope) {
+
+.controller('UploadController', function ($scope) {
         // your friend: console.log();    
 
         $scope.setImageFile = function (element) {
@@ -138,7 +139,7 @@ angular.module('mobileWebApp')
             }
         };
 
-      $scope.saveImage = function () {
+        $scope.saveImage = function () {
             var imgAsDataUrl = $scope.canvas.toDataURL('image/png');
             $scope.url = imgAsDataUrl;
         };

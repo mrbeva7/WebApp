@@ -10,22 +10,17 @@
 
             <div class="row">
                 <table class="table table-striped table-bordered table-hover">
-                    <tr class="success">
-                        <th>
-                            v
-                        </th>
-                        <th>
-                            m
-                        </th>
-                    </tr>
+
 
                     <tr ng-repeat="video in videos">
                         <td class="danger">
                             <div class="responsive-video">
-                                <img ng-src="{{ mediaPath + video.thumbNails.medium }}" alt="{{ video.title }}">
+                                <a ng-href='#/video/{{ video.fileId }}'>
+                                    <img ng-src="{{ mediaPath + video.thumbNails.medium }}" alt="{{ video.title }}">
+                                </a>
                             </div>
-                        </td>
-                        <td>
+
+
                             <h3>{{video.title}}</h3>
                         </td>
                     </tr>
