@@ -8,12 +8,13 @@
 
             <p class="lead">This is why should download this fantastic app.</p>
 
+
             <div class="row">
                 <table class="table table-striped table-bordered table-hover">
 
 
                     <tr ng-repeat="video in videos">
-                        <td class="danger">
+                        <td class="">
                             <div class="responsive-video">
                                 <a ng-href='#/video/{{ video.fileId }}'>
                                     <img ng-src="{{ mediaPath + video.thumbNails.medium }}" alt="{{ video.title }}">
@@ -26,6 +27,7 @@
                     </tr>
 
                 </table>
+
             </div>
         </div>
     </div>

@@ -2,6 +2,39 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
+
+$navcolor: #BB1F3C;
+
+.navbar {
+    margin-bottom: 0;
+}
+
+.navigation-tabs {
+    background-color: $navcolor;
+
+    ul {
+        display: flex;
+        justify-content: space-between;
+        padding: 0;
+        
+        li {
+            display: inline-block;
+            flex-grow: 1;
+            text-align: center;
+            
+            &.active {
+                background-color: #DA2749;
+            }
+            
+            a {
+                display: block;
+                color: #fff;
+                padding: 10px;
+            }
+        }
+    }
+}
+
 .upload-view {
     input {
         margin: 0.5em;
