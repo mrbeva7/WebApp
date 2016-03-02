@@ -1,22 +1,11 @@
-<div class="container contentContainer">
+<div class="photo-list-view">
 
-
-
-
-
-
-
-
-    <div class="row marginBottom">
-
-        <div class="col-md-6 marginTop" ng-repeat="image in images">
-
+    <div class="image-container">
+        <div ng-repeat="image in images" class="image-holder" style="background-image: url('{{ mediaPath+ image.path }}')">
             <a ng-href='#/photo/{{ image.fileId }}'>
-                <img ng-src="{{ mediaPath+ image.path }}" alt="{{ image.title }}" height="auto" width="50%">
-                <h2>{{image.title}}</h2>
+                <h3>{{image.title}}</h3>
             </a>
-
         </div>
-
     </div>
+    
 </div>

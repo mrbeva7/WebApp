@@ -1,21 +1,23 @@
 <div align="center" style="padding-top:10px">
-    <audio controls ng-if="audio">
-        <source ng-src="{{mediaPath + audio.path | trusted}}" type="{{audio.mimeType}}">
-    </audio>
+    <video width="320px" controls ng-if="video">
+        <source ng-src="{{mediaPath + video.path | trusted}}" type="{{video.mimeType}}">
+    </video>
 </div>
-<h2 style="padding-left:10px"> {{ audio.title }} </h2>
+<h2 style="padding-left:10px"> {{ video.title }} </h2>
 <h4 style="padding-left:10px"> {{user.username}} </h4>
 
-<span style="padding-left:10px" class="glyphicon glyphicon-thumbs-up"> Like
-</span>
-<span style="padding-left:10px" class="glyphicon glyphicon-thumbs-down"> Dislike
+<span style="padding-left:10px" class="glyphicon glyphicon-thumbs-up"> {{ likes }} Like 
+    <span style="padding-left:10px" class="glyphicon glyphicon-thumbs-down"> Dislike
+    </span>
 </span>
 <br>
 
 
 
-<div ng-controller="CommentController">
-    <h2> {{ CommentController.comment }} </h2>
+
+<div>
+    <h2> comments </h2>
+    <h2> {{ comments }} </h2>
 </div>
 
 
@@ -30,13 +32,13 @@
 <div style="padding-left:10px">
     <form name="commentForm" class="form-inline">
         <div class="form-group">
-            <img id="element1" src="apple-touch-icon.png" class="img-rounded" width="30" height="30" />
+
             <input id="element2" ng-model="commentCtrl.comment.body" type="text" class="form-control" placeholder="Comment" />
             <button ng-click="commentFile()" id="element3" type="submit" class="btn btn-default">Add</button>
             <li ng-repeat="comment in file.comments">
                 <blockquote>
                     {{comment.body}}
-                    <cite class="clearfix">-{{comment.user}}</cite>
+                    <cite class="clearfix">-{{comment.author}}</cite>
                 </blockquote>
             </li>
 
@@ -44,17 +46,22 @@
                 #element1 {
                     display: inline-block;
                 }
-
+                
                 #element2 {
                     display: inline-block;
                     width: auto;
                 }
-
+                
                 #element3 {
                     display: inline-block;
                 }
             </style>
 
+
+
         </div>
     </form>
+
+
+
 </div>

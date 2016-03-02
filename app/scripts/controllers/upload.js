@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('mobileWebApp')
-    .controller('UploadController', function ($scope, AjaxFactory) {
+    .controller('UploadController', function ($scope, AjaxFactory) {    
         // your friend: console.log(); 
         $scope.setMediaFile = function (element) {
             $scope.mimeType = element.files[0].type;
@@ -34,6 +34,7 @@ angular.module('mobileWebApp')
                 console.log(error.data);
             });
         };
+
         $scope.dataURItoBlob = function (dataURI) {
             // convert base64/URLEncoded data component to raw binary data held in a string
             var byteString;
