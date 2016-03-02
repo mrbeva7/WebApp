@@ -1,0 +1,67 @@
+<div align="center" style="padding-top:10px">
+    <image ng-if="image">
+        <source ng-src="{{ mediaPath + image.path | trusted }}" type="{{image.mimeType}}">
+    </image>
+</div>
+<h2 style="padding-left:10px"> {{ image.title }} </h2>
+<h4 style="padding-left:10px"> {{user.username}} </h4>
+
+<span style="padding-left:10px" class="glyphicon glyphicon-thumbs-up"> {{ likes }} Like 
+    <span style="padding-left:10px" class="glyphicon glyphicon-thumbs-down"> Dislike
+    </span>
+</span>
+<br>
+
+
+
+
+<div>
+    <h2> comments </h2>
+    <h2> {{ comments }} </h2>
+</div>
+
+
+
+
+
+
+
+
+
+
+<div style="padding-left:10px">
+    <form name="commentForm" class="form-inline">
+        <div class="form-group">
+
+            <input id="element2" ng-model="commentCtrl.comment.body" type="text" class="form-control" placeholder="Comment" />
+            <button ng-click="commentFile()" id="element3" type="submit" class="btn btn-default">Add</button>
+            <li ng-repeat="comment in file.comments">
+                <blockquote>
+                    {{comment.body}}
+                    <cite class="clearfix">-{{comment.author}}</cite>
+                </blockquote>
+            </li>
+
+            <style>
+                #element1 {
+                    display: inline-block;
+                }
+                
+                #element2 {
+                    display: inline-block;
+                    width: auto;
+                }
+                
+                #element3 {
+                    display: inline-block;
+                }
+            </style>
+
+
+
+        </div>
+    </form>
+
+
+
+</div>

@@ -1,0 +1,22 @@
+<div class="container contentContainer">
+
+
+
+
+
+
+
+
+    <div class="row marginBottom">
+
+        <div class="col-md-6 marginTop" ng-repeat="image in images">
+
+            <a ng-href='#/photo/{{ image.fileId }}'>
+                <img ng-src="{{ mediaPath+ image.path }}" alt="{{ image.title }}" height="auto" width="50%">
+                <h2>{{image.title}}</h2>
+            </a>
+
+        </div>
+
+    </div>
+</div>
