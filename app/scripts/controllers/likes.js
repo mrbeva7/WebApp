@@ -12,6 +12,7 @@ angular.module('mobileWebApp')
 
         }).then(function (response) {
             $scope.like = response.data;
+            console.log(response.data);
 
         });
     }]);
