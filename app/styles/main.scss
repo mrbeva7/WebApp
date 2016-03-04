@@ -2,44 +2,142 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
+
+//fonts
 @import url(https://fonts.googleapis.com/css?family=Lobster);
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+@import url(https://fonts.googleapis.com/css?family=Indie+Flower);
+@import url(https://fonts.googleapis.com/css?family=Gloria+Hallelujah);
 
 $navcolor: #BB1F3C;
 
-.navbar-inverse .navbar-brand  {
-    font-family: Lobster;
-    font-size: 200%;
-    color: #fff;
-}
-.navbar {
-    margin-bottom: 0;
+@-webkit-keyframes bounce-animation {
+  50% {
+    -webkit-transform: translateY(-10px);
+            transform: translateY(-10px);
+  }
 }
 
-.navigation-tabs {
-    background-color: $navcolor;
+@keyframes bounce-animation {
+  50% {
+    -webkit-transform: translateY(-10px);
+            transform: translateY(-10px);
+  }
+}
 
-    ul {
-        display: flex;
-        justify-content: space-between;
-        padding: 0;
+.NavbarContainer {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+
+    .navbar-inverse .navbar-brand  {
+        font-family: Lobster;
+        font-size: 200%;
+        color: #fff;
+    }
+    
+    .navbar {
+        border-radius: 0;
+        margin-bottom: 0;
         
-        li {
-            display: inline-block;
-            flex-grow: 1;
-            text-align: center;
+        .navbar-form {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+    }
+
+    .navigation-tabs {
+        background-color: $navcolor;
+
+        ul {
+            display: flex;
+            justify-content: space-between;
+            padding: 0;
+            margin: 0;
             
-            &.active {
-                background-color: #DA2749;
-            }
-            
-            a {
-                display: block;
-                color: #fff;
-                padding: 10px;
+            li {
+                display: inline-block;
+                flex-grow: 1;
+                text-align: center;
+                
+                &.active {
+                    background-color: #DA2749;
+                }
+                
+                a {
+                    display: block;
+                    color: #fff;
+                    padding: 10px;
+                }
             }
         }
     }
 }
+
+.ViewContainer {
+    padding-top: 92px;
+}
+
+.btn {
+    font-family: Lobster;
+}
+
+.RegisterForm {
+    margin-bottom: 30px;
+}
+
+.main-view {
+    .jumbotron {
+        margin-bottom: 0;
+
+        &.sticky {
+            position: fixed;
+            top: 92px;
+            width: 100%;
+            padding: 30px 0;
+        }
+
+        .container h1{
+        font-family: Lobster;
+        text-align: center;
+        font-size: 300%;
+        }
+    }
+    
+    .contentContainer {
+        margin-top: 136px;
+
+        .TopHeader{
+            text-align: center;
+            font-family: "Indie Flower";
+        }
+
+        .introduction {
+            font-family: Montserrat;
+            text-align: center;
+        }
+
+        .BottomHeader {
+            text-align: center;
+            font-size: 200%;
+            font-family: "Gloria Hallelujah";
+        }
+    }
+
+    .DownArrowContainer {
+        text-align: center;
+        margin: 30px;
+
+        .DownArrow {
+            font-size: 300%;
+            color: #DA2749;
+            -webkit-animation: bounce-animation 1.5s ease-in-out infinite;
+            animation: bounce-animation 1.5s ease-in-out infinite;
+        }
+    }
+}
+
 
 .upload-view {
     input {

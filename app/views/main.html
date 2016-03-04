@@ -1,63 +1,26 @@
-<div class="jumbotron">
-    <div class="container">
-        <h1> ABC's</h1>
+<div class="main-view">
+    <div class="jumbotron sticky">
+        <div class="container">
+            <h1> Welcome! </h1>
+        </div>
     </div>
-</div>
 
 
-<div class="container contentContainer" id="topContainer">
+    <div class="container contentContainer" id="topContainer">
 
-    <div class="row">
+        <h1 class="TopHeader">Our Web App</h1>
 
-        <div class="col-md-6 col-md-offset-3" id="topRow">
+        <p class="introduction">See what your classmates have shared.</p>
 
-            <h1 class="marginTop">Our Awesome App</h1>
+        <p class="introduction">You can see all the images, audios and videos uploaded by your fellow students from ICT14_M. </p>
 
-            <p class="lead">See what your classmates have shared</p>
+        <p class="BottomHeader">Interested? <br> Swipe up to join us!</p>
 
-            <p>You can see all the images, audios and all the videos shared by fellow students from ICT14_M. </p>
-
-            <p class="bold marginTop">Interested? Join our here!</p>
-
-            <form class="navbar-form navbar-right" id="loginForm" enctype="application/x-www-form-urlencoded">
-                <div class="form-group">
-                    <input input name="username" type="text" ng-model="uname" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <input name='password' ng-model='pwd' type="text" placeholder="Password" class="form-control" />
-                </div>
-                <button ng-click="login()" type="submit" class="btn btn-success btn-sm">Log In</button>
-            </form>
-
-
-
-            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Sign Up</button>
-
-            <!-- Modal -->
-            <div id="myModal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Modal Header</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div ng-controller="RegisterController">
-                                <register-form></register-form>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-
+        <div class="DownArrowContainer">
+          <span class="DownArrow glyphicon glyphicon-hand-down"></span>
         </div>
 
+        <register-form></register-form>
 
     </div>
+</div>

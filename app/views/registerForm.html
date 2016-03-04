@@ -1,13 +1,15 @@
-<div>
-    <h4>Register</h4>
-    <form id="registerForm" enctype="application/x-www-form-urlencoded">
-        name
-        <input name="username" type="text" ng-model="uname">
-        <br> password
-        <input name="password" type="text" ng-model="pwd">
-        <br> email
-        <input name="email" type="text" ng-model="email">
-        <br>
-        <button ng-click="register()">Register</button>
+<div class="RegisterForm">
+    <h4>Sign Up</h4>
+    <form id="signUpForm" enctype="application/x-www-form-urlencoded">
+        <div class="form-group">
+            <input name="username" type="text" placeholder="Username" ng-model="uname" class="form-control" />
+        </div>
+        <div class="form-group">
+            <input name="email" type="text" placeholder="Email" ng-model="email" class="form-control" />
+        </div>
+        <div class="form-group">
+            <input name="password" ng-model='pwd' type="password" placeholder="Password" class="form-control" />
+        </div>
+        <button ng-click="signup()" type="submit" class="btn btn-info">Sign Up</button>
     </form>
 </div>
