@@ -2,9 +2,15 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
+@import url(https://fonts.googleapis.com/css?family=Lobster);
 
 $navcolor: #BB1F3C;
 
+.navbar-inverse .navbar-brand  {
+    font-family: Lobster;
+    font-size: 200%;
+    color: #fff;
+}
 .navbar {
     margin-bottom: 0;
 }
