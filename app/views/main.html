@@ -6,7 +6,7 @@
     </div>
 
 
-    <div class="container contentContainer" id="topContainer">
+    <div ng-if="!userData" class="container contentContainer" id="topContainer">
 
         <h1 class="TopHeader">Our Web App</h1>
 
@@ -17,7 +17,7 @@
         <p class="BottomHeader">Interested? <br> Swipe up to join us!</p>
 
         <div class="DownArrowContainer">
-          <span class="DownArrow glyphicon glyphicon-hand-down"></span>
+            <span class="DownArrow glyphicon glyphicon-hand-down"></span>
         </div>
 
         <register-form></register-form>

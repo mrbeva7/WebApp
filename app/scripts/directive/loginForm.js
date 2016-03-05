@@ -4,7 +4,8 @@ angular.module('mobileWebApp')
         return {
             replace: true,
             restrict: 'E',
-            templateUrl: 'views/loginForm.html'
+            templateUrl: 'views/loginForm.html',
+            controller: 'LoginController'
         };
 
     });

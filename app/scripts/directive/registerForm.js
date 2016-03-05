@@ -4,7 +4,8 @@ angular.module('mobileWebApp')
         return {
             replace: true,
             restrict: 'E',
-            templateUrl: 'views/registerForm.html'
+            templateUrl: 'views/registerForm.html',
+            controller: 'RegisterController'
         };
 
     });

@@ -3,21 +3,21 @@ angular.module('mobileWebApp')
     .controller('RegisterController', function ($scope, AjaxFactory, MediaService) {
 
         $scope.register = function () {
-            console.log('hello!');
-            var data = {
 
+            var data = {
                 username: $scope.uname,
                 password: $scope.pwd,
                 email: $scope.email
             };
 
-            var request = AjaxFactory.register(data);
-
-            request.then(function (response) {
-                MediaService.setVariable('userData', response.data);
-                $scope.logged = true;
-            }, function (error) {
-                console.log(error.data);
-            });
+            AjaxFactory.register(data)
+                .then(function (response) {
+                    MediaService.login(response.data);
+                    $('#successfullRegistrationModal').modal();
+                })
+                .catch(function (error) {
+                    $('#failedRegistrationModal .error-msg').text(error);
+                    $('#failedRegistrationModal').modal();
+                });
         };
     });

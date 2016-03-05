@@ -40,6 +40,7 @@ $navcolor: #BB1F3C;
     .navbar {
         border-radius: 0;
         margin-bottom: 0;
+        color: #fff;
         
         .navbar-form {
             margin-top: 0;
@@ -83,8 +84,30 @@ $navcolor: #BB1F3C;
     font-family: Lobster;
 }
 
+.modal-dialog {
+    margin-top: 150px;
+}
+
 .RegisterForm {
     margin-bottom: 30px;
+}
+
+#successfullRegistrationModal, #failedRegistrationModal, #successfullLoginModal, #failedLoginModal {
+    text-align: center;
+
+    .OkSign {
+        font-size: 500%;
+        color: #1FBB3C;
+    }
+    .FailedSign {
+        font-size: 500%;
+        color: #BB1F3C;
+    }
+    .btn {
+        display: block;
+        width: 100px;
+        margin: 0 auto;
+    }
 }
 
 .main-view {

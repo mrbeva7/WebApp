@@ -18,35 +18,77 @@
 
 <body>
 
+    <div id="successfullRegistrationModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <span class="OkSign glyphicon glyphicon-ok"></span>
+                    <p>Registration successful!</p>
+                    <button class="btn btn-success" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="failedRegistrationModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <span class="FailedSign glyphicon glyphicon-remove"></span>
+                    <p class="error-msg"></p>
+                    <button class="btn btn-danger" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="successfullLoginModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <span class="OkSign glyphicon glyphicon-ok"></span>
+                    <p>Login successful!</p>
+                    <button class="btn btn-success" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="failedLoginModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <span class="FailedSign glyphicon glyphicon-remove"></span>
+                    <p class="error-msg"></p>
+                    <button class="btn btn-danger" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="NavbarContainer" ng-controller="NavbarController">
-        <nav class="navbar navbar-inverse" ng-controller="NavbarController">
+        <nav class="navbar navbar-inverse">
             <div class="container">
                 <!-- hamburger seen on mobile-->
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+                    <span ng-if="!userData">Login</span>
+                    <span ng-if="userData" class="glyphicon glyphicon-user"></span>
                 </button>
                 <!-- title -->
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#/">Team ABC</a>
                 </div>
-                <!-- login signup -->
                 <div id="navbar" class="navbar-form navbar-right navbar-collapse collapse">
-                    <div ng-controller="LoginController" ng-hide="logged">
-                        <form id="loginForm" enctype="application/x-www-form-urlencoded">
-
-                            <div class="form-group">
-                                <input type="username" type="text" class="form-control" ng-model='uname' placeholder="Username" />
-                            </div>
-                            <div class="form-group">
-                                <input type="password" type="text" ng-model='pwd' placeholder="Password" class="form-control" />
-                            </div>
-                            <button type="submit" class="btn btn-primary" ng-click="login()"> Log In </button>
-
-                        </form>
+                    <!-- login signup -->
+                    <div ng-if="!userData">
+                        <login-form></login-form>
                     </div>
+                    <!-- user info -->
+                    <ul ng-if="userData" class="nav navbar-nav">
+                        <li>{{userData.username}}</li>
+                        <li>{{userData.email}}</li>
+                        <li><button class="btn btn-danger" ng-click="signOut()">Sign out</button></li>
+                    </ul>
                 </div>
 
             </div>

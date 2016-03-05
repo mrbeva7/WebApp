@@ -9,16 +9,15 @@ angular.module('mobileWebApp')
                 password: $scope.pwd
             };
 
-            var request = AjaxFactory.login(data);
-
-            request.then(function (response) {
-                console.log(response.data);
-                MediaService.setVariable('userData', response.data);
-                $scope.logged = true;
-                localStorage.setItem("userID", response.data.userId);
-            }, function (error) {
-                console.log(error.data);
-            });
+            AjaxFactory.login(data)
+                .then(function (response) {
+                    MediaService.login(response.data);
+                    $('#successfullLoginModal').modal();
+                })
+                .catch(function (error) {
+                    $('#failedLoginModal .error-msg').text(error);
+                    $('#failedLoginModal').modal();
+                });
         };
 
     });

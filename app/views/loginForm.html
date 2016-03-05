@@ -1,10 +1,11 @@
-<form class="navbar-form navbar-right" id="loginForm" enctype="application/x-www-form-urlencoded">
+<form id="loginForm" enctype="application/x-www-form-urlencoded">
+
     <div class="form-group">
-        <input input name="username" type="text" ng-model="uname" class="form-control" />
+        <input type="username" type="text" ng-model='uname' placeholder="Username" class="form-control"  />
     </div>
     <div class="form-group">
-        <input name='password' ng-model='pwd' type="text" placeholder="Password" class="form-control" />
+        <input type="password" type="text" ng-model='pwd' placeholder="Password" class="form-control" />
     </div>
-    <button ng-click="login()" class="btn btn-success btn-sm">Log In</button>
+    <button type="submit" class="btn btn-primary" ng-click="login()"> Log In </button>
 
 </form>
