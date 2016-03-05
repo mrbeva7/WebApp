@@ -1,7 +1,5 @@
-<div align="center" style="padding-top:10px">
-    <image ng-if="image">
-        <source ng-src="{{ mediaPath + image.path | trusted }}" type="{{image.mimeType}}">
-    </image>
+<div align="center">
+    <img style="max-width: 100%" ng-src="{{ mediaPath + image.path | trusted }}">
 </div>
 <h2 style="padding-left:10px"> {{ image.title }} </h2>
 <h4 style="padding-left:10px"> {{user.username}} </h4>
