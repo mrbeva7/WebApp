@@ -158,10 +158,13 @@ $navcolor: #BB1F3C;
     .image-container {
         display: flex;
         flex-wrap: wrap;
+        justify-content: center;
         
         .image-holder {
             position: relative;
-            width: 50%;
+            width: 30.6%;
+            margin: 1%;
+            border-radius: 5px;
             background-size: cover;
             
             &:before {
