@@ -249,6 +249,10 @@ angular.module('mobileWebApp')
             return imgAsDataUrl;
         };
 
+        $scope.$on("loginChange", function () {
+            $scope.formData.userId = MediaService.userData ? MediaService.userData.userId : null;
+        });
+
     })
     .config(function ($compileProvider) {
 

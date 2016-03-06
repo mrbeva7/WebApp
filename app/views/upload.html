@@ -1,4 +1,8 @@
-<div class="container upload-view">
+<div class="container" ng-hide="formData.userId">
+    <h3>Login to upload files</h3>
+    <login-form></login-form>
+</div>
+<div ng-show="formData.userId" class="container upload-view">
 
     <form id="fileForm" class="clearfix">
         <div class="UploadButton">
