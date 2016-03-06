@@ -1,38 +1,83 @@
 'use strict';
 
 angular.module('mobileWebApp')
-    .controller('UploadController', function ($scope, AjaxFactory) {    
-        // your friend: console.log(); 
+    .controller('UploadController', function ($scope, AjaxFactory, MediaService) {    
+
         $scope.setMediaFile = function (element) {
-            $scope.mimeType = element.files[0].type;
-            $scope.type = $scope.mimeType.substr(0, 5);
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $scope.image.src = e.target.result;
-            };
-            reader.readAsDataURL(element.files[0]);
-            $scope.image.onload = $scope.resetImage;
+            var file = element.files[0];
+            $scope.formData.mimeType = file.type;
+            $scope.formData.type = file.type.substr(0, 5);
+            $scope.formData.filename = file.name;
+            $scope.formData.name = file.name.match(/^[^\.]*/)[0] || '';
+            $scope.formData.desc = 'My ' + $scope.formData.type;
+            if ($scope.formData.type === 'image') {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $scope.image.src = e.target.result;
+                };
+                $scope.image.onload = $scope.resetImage;
+                reader.readAsDataURL(file);
+            }
+            $scope.$digest();
         };
 
-        $scope.sendImage = function () {
+        $scope.isImage = function () {
+            return $scope.formData.type === 'image';
+        }
+
+        $scope.isAudio = function () {
+            return $scope.formData.type === 'audio';
+        }
+
+        $scope.isVideo = function () {
+            return $scope.formData.type === 'video';
+        }
+
+        $scope.hasFile = function () {
+            return !!$scope.formData.type;
+        }
+
+        $scope.isTab = function (tab) {
+            return $scope.tab === tab;
+        }
+
+        $scope.setTab = function (tab) {
+            $scope.tab = tab;
+        }
+
+        function upload(fd) {
+            AjaxFactory
+                .uploadFile(fd)
+                .then(function (response) {
+                    var fileId = response.fileId
+                    if ($scope.isImage()) {
+                        window.location.hash = '#/photo/' + fileId
+                    } else if ($scope.isAudio()) {
+                        window.location.hash = '#/music/' + fileId
+                    } else if ($scope.isVideo()) {
+                        window.location.hash = '#/video/' + fileId
+                    }
+                    $('#successfulUpload').modal();
+                })
+                .catch(function (error) {
+                    $('#failedUpload .error-msg').text(error);
+                    $('#failedUpload').modal();
+                });
+        }
+
+        $scope.uploadFile = function () {
+            var fd = new FormData(document.getElementById('fileForm'));
+            upload(fd);
+        }
+
+        $scope.uploadImage = function () {
             var fd = new FormData();
-
-            fd.append('type', $scope.type);
-            fd.append('mime-type', $scope.mimeType);
-            fd.append('title', $scope.name);
-            fd.append('name', $scope.name);
-            fd.append('description', $scope.desc);
-            fd.append('user', localStorage.getItem('userID'));
-            //console.log($scope.dataURItoBlob($scope.saveImage()));
+            fd.append('title', $scope.formData.name);
+            fd.append('description', $scope.formData.desc);
+            fd.append('type', $scope.formData.type);
+            fd.append('user', $scope.formData.userId);
             fd.append('file', $scope.dataURItoBlob($scope.canvas.toDataURL('image/png')), 'filename.png');
-
-            var request = AjaxFactory.uploadFile(fd);
-
-            request.then(function (response) {
-                console.log(response.data);
-            }, function (error) {
-                console.log(error.data);
-            });
+            upload(fd);
         };
 
         $scope.dataURItoBlob = function (dataURI) {
@@ -72,6 +117,15 @@ angular.module('mobileWebApp')
 
         $scope.init = function () {
             // initialize default values for variables
+            $scope.formData = {
+                name: '',
+                desc: '',
+                type: '',
+                mimeType: '',
+                userId: MediaService.userData ? MediaService.userData.userId : null
+            };
+            $scope.tab = 'file';
+
             $scope.brightness = 0;
             $scope.contrast = 1;
             $scope.strength = 1;
@@ -112,7 +166,6 @@ angular.module('mobileWebApp')
                 $scope.vignImage.src = 'images/vignette.jpg';
             }
 
-            console.log($scope.vignImage);
         };
 
 
@@ -193,7 +246,6 @@ angular.module('mobileWebApp')
 
         $scope.saveImage = function () {
             var imgAsDataUrl = $scope.canvas.toDataURL('image/png');
-            //$scope.url = imgAsDataUrl;
             return imgAsDataUrl;
         };
 

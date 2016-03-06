@@ -1,112 +1,134 @@
 <div class="container upload-view">
 
-    <form id="fileForm">
-        <input name="file" type="file" onchange="angular.element(this).scope().setMediaFile(this)">
-        <input name="title" type="text" ng-model="name" ng-init="name='no name'">
-        <input name="description" type="text" ng-model="desc" ng-init="desc='no description'">
-        <canvas id="myCanvas" style="width: 100%;">
-            <!-- Insert fallback content here -->
-        </canvas>
-        <button ng-click="sendImage()">Upload</button>
+    <form id="fileForm" class="clearfix">
+        <div class="UploadButton">
+            <span ng-hide="hasFile()" class="glyphicon glyphicon-folder-open"></span>
+            <canvas ng-show="isImage()" id="myCanvas"></canvas>
+            <span ng-show="isAudio()" class="glyphicon glyphicon-music"></span>
+            <span ng-show="isVideo()" class="glyphicon glyphicon-film"></span>
+            <p ng-hide="formData.filename">Upload a file</p>
+            <p>{{ formData.filename }}</p>
+            <input name="file" type="file" onchange="angular.element(this).scope().setMediaFile(this)">
+        </div>
+
+        <input name="user" type="hidden" value="{{ formData.userId }}">
+        <input name="type" type="hidden" value="{{ formData.type }}">
+
+        <ul class="nav nav-tabs" role="tablist" ng-show="isImage()">
+            <li role="presentation" ng-class="{active: isTab('file')}"><a role="tab" ng-click="setTab('file')">File</a></li>
+            <li role="presentation" ng-class="{active: isTab('brightness')}"><a role="tab" ng-click="setTab('brightness')">Brightness</a></li>
+            <li role="presentation" ng-class="{active: isTab('color')}"><a role="tab" ng-click="setTab('color')">Color</a></li>
+        </ul>
+        <div class="tab-content" ng-show="hasFile()">
+            <div role="tabpanel" ng-class="{'tab-pane': true, active: isTab('file')}">
+                <h3>File information</h3>
+                <div class="form-group">
+                    <label>Title</label>
+                    <input name="title" class="form-control" type="text" placeholder="Title" ng-model="formData.name">
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <input name="description" class="form-control" type="text" placeholder="Description" ng-model="formData.desc">
+                </div>
+            </div>
+            <div role="tabpanel" ng-class="{'tab-pane': true, active: isTab('brightness')}">
+                <h3>Brightness / Contrast</h3>
+                <div class="row">
+                    <div class="col-xs-3">
+                        Brighness
+                    </div>
+                    <div class="col-xs-6">
+                        <input type="range" ng-model="brightness" ng-change="applyFilters()" step="1" min="-255" max="255">
+                    </div>
+                    <div class="col-xs-3">
+                        <input type="text" size="4" ng-model="brightness" ng-change="applyFilters()">
+                    </div>
+                </div>
+
+                <div class="row" ng-hide="autocontrast">
+                    <div class="col-xs-3">
+                        Contrast
+                    </div>
+                    <div class="col-xs-6">
+                        <input type="range" ng-model="contrast" ng-change="applyFilters()" step="0.1" min="0" max="10">
+                    </div>
+                    <div class="col-xs-3">
+                        <input type="text" size="4" ng-model="contrast" ng-change="applyFilters()">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4">
+                        Autocontrast on/off
+                    </div>
+                    <div class="col-xs-8">
+                        <input type="checkbox" ng-model="autocontrast">
+                    </div>
+                </div>
+            </div>
+            <div role="tabpanel" ng-class="{'tab-pane': true, active: isTab('color')}">
+                <h3>Color filter <span ng-attr-style="background-color: rgb({{color.red}},{{color.green}},{{color.blue}}); border: 1px solid #333; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></h3>
+
+                <div class="row">
+                    <div class="col-xs-3">
+                        R
+                    </div>
+                    <div class="col-xs-6">
+                        <input type="range" ng-model="color.red" min="0" max="255" ng-change="applyFilters()">
+                    </div>
+                    <div class="col-xs-3">
+                        <input type="text" size="4" ng-model="color.red" ng-change="applyFilters()">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-3">
+                        G
+                    </div>
+                    <div class="col-xs-6">
+                        <input type="range" ng-model="color.green" step="1" min="0" max="255" ng-change="applyFilters()">
+                    </div>
+                    <div class="col-xs-3">
+                        <input type="text" size="4" ng-model="color.green" ng-change="applyFilters()">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-3">
+                        B
+                    </div>
+                    <div class="col-xs-6">
+                        <input type="range" ng-model="color.blue" step="1" min="0" max="255" ng-change="applyFilters()">
+                    </div>
+                    <div class="col-xs-3">
+                        <input type="text" size="4" ng-model="color.blue" ng-change="applyFilters()">
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-xs-3">
+                        Strength
+                    </div>
+                    <div class="col-xs-6">
+                        <input type="range" ng-model="strength" step="1" min="1" max="100" ng-change="applyFilters()">
+                    </div>
+                    <div class="col-xs-3">
+                        <input type="text" size="4" ng-model="strength" ng-change="applyFilters()">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-4">
+                        Vignette&nbsp;on/off
+                    </div>
+                    <div class="col-xs-8">
+                        <input type="checkbox" ng-model="vignette" ng-change="applyFilters()">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button ng-show="hasFile() &amp;&amp; isImage()" class="btn btn-primary pull-right" ng-click="uploadImage()">Upload</button>
+        <button ng-show="hasFile() &amp;&amp; !isImage()" class="btn btn-primary pull-right" ng-click="uploadFile()">Upload</button>
     </form>
-
-    <h3>Brightness / Contrast</h3>
-    <div class="row">
-        <div class="col-xs-3">
-            Brighness
-        </div>
-        <div class="col-xs-6">
-            <input type="range" ng-model="brightness" ng-change="applyFilters()" step="1" min="-255" max="255">
-        </div>
-        <div class="col-xs-3">
-            <input type="text" size="4" ng-model="brightness" ng-change="applyFilters()">
-        </div>
-    </div>
-
-    <div class="row" ng-hide="autocontrast">
-        <div class="col-xs-3">
-            Contrast
-        </div>
-        <div class="col-xs-6">
-            <input type="range" ng-model="contrast" ng-change="applyFilters()" step="0.1" min="0" max="10">
-        </div>
-        <div class="col-xs-3">
-            <input type="text" size="4" ng-model="contrast" ng-change="applyFilters()">
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-4">
-            Autocontrast on/off
-        </div>
-        <div class="col-xs-8">
-            <input type="checkbox" ng-model="autocontrast">
-        </div>
-    </div>
-
-    <h3>Color filter <span ng-attr-style="background-color: rgb({{color.red}},{{color.green}},{{color.blue}}); border: 1px solid #333; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></h3>
-
-    <div class="row">
-        <div class="col-xs-3">
-            R
-        </div>
-        <div class="col-xs-6">
-            <input type="range" ng-model="color.red" min="0" max="255" ng-change="applyFilters()">
-        </div>
-        <div class="col-xs-3">
-            <input type="text" size="4" ng-model="color.red" ng-change="applyFilters()">
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-xs-3">
-            G
-        </div>
-        <div class="col-xs-6">
-            <input type="range" ng-model="color.green" step="1" min="0" max="255" ng-change="applyFilters()">
-        </div>
-        <div class="col-xs-3">
-            <input type="text" size="4" ng-model="color.green" ng-change="applyFilters()">
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-xs-3">
-            B
-        </div>
-        <div class="col-xs-6">
-            <input type="range" ng-model="color.blue" step="1" min="0" max="255" ng-change="applyFilters()">
-        </div>
-        <div class="col-xs-3">
-            <input type="text" size="4" ng-model="color.blue" ng-change="applyFilters()">
-        </div>
-    </div>
-
-
-    <div class="row">
-        <div class="col-xs-3">
-            Strength
-        </div>
-        <div class="col-xs-6">
-            <input type="range" ng-model="strength" step="1" min="1" max="100" ng-change="applyFilters()">
-        </div>
-        <div class="col-xs-3">
-            <input type="text" size="4" ng-model="strength" ng-change="applyFilters()">
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-xs-4">
-            Vignette&nbsp;on/off
-        </div>
-        <div class="col-xs-8">
-            <input type="checkbox" ng-model="vignette" ng-change="applyFilters()">
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-xs-12 text-center">
-            <a class="btn btn-default" ng-href="{{ url }}" download="edited" ng-click="saveImage()">Save image</a>
-        </div>
-    </div>
 
 </div>

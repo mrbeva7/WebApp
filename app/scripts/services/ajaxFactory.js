@@ -4,13 +4,21 @@ angular.module('mobileWebApp')
         var urlBase = 'http://util.mw.metropolia.fi/ImageRekt/api/v2/';
         var ajaxFunctions = {};
 
-        ajaxFunctions.uploadFile = function (args) {
-            return $http.post(urlBase + 'upload', args, {
-                transformRequest: angular.identity,
-                headers: {
-                    'Content-Type': undefined
-                }
-            });
+        ajaxFunctions.uploadFile = function (formData) {
+            return $http
+                .post(urlBase + 'upload', formData, {
+                    transformRequest: angular.identity,
+                    headers: {
+                        'Content-Type': undefined
+                    }
+                })
+                .then(function (response) {
+                    if (response.data.error) {
+                        // upload failed
+                        throw new Error(response.data.error);
+                    }
+                    return  response.data;
+                });;
         };
 
         ajaxFunctions.register = function (args) {

@@ -66,6 +66,30 @@
         </div>
     </div>
 
+    <div id="successfulUpload" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <span class="OkSign glyphicon glyphicon-ok"></span>
+                    <p>Upload successful!</p>
+                    <button class="btn btn-success" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="failedUpload" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <span class="FailedSign glyphicon glyphicon-remove"></span>
+                    <p class="error-msg"></p>
+                    <button class="btn btn-danger" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="NavbarContainer" ng-controller="NavbarController">
         <nav class="navbar navbar-inverse">
             <div class="container">
