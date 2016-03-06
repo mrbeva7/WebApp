@@ -1,19 +1,11 @@
 <div class="container">
-
-    <div class="row center">
-
-        <h1 class="center title">here goes the audio files</h1>
-        <p class="lead center">Summary of the audios</p>
-
-
+    
+    <div ng-repeat="audio in audios">
+        <a class="btn btn-success pull-right" href="#/music/{{ audio.fileId }}">Play</a>
+        <h2>
+            <span class="glyphicon glyphicon-music"></span> {{ audio.title }}
+        </h2>
+        <hr>
     </div>
 
-    <div class="row marginBottom">
-
-        <div class="col-md-4 marginTop" ng-repeat="audio in audios">
-            <h2><span class="glyphicon glyphicon-music"></span> {{ audio.title }}</h2>
-            <a class="btn btn-success marginTop" href="#/music/{{ audio.fileId }}">Play</a>
-        </div>
-
-    </div>
 </div>

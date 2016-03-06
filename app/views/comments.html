@@ -1,0 +1,16 @@
+<div class="commentsSection">
+    <h4>Comments</h2>
+    <ul>
+        <li ng-repeat="comment in comments">
+            <blockquote>
+                <cite class="clearfix">{{comment.username}}:&nbsp;</cite>
+                {{comment.comment}}
+            </blockquote>
+        </li>
+    </ul>
+
+    <div ng-if="userId">
+        <button ng-click="commentFile()" class="btn btn-primary sendButton">Send</button>
+        <input ng-model="input.comment" type="text" class="form-control commentField" placeholder="Comment" />
+    </div>
+</div>

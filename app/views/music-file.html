@@ -1,60 +1,16 @@
-<div align="center" style="padding-top:10px">
+<div class="music-file-view container">
     <audio controls ng-if="audio">
         <source ng-src="{{mediaPath + audio.path | trusted}}" type="{{audio.mimeType}}">
     </audio>
-</div>
-<h2 style="padding-left:10px"> {{ audio.title }} </h2>
-<h4 style="padding-left:10px"> {{user.username}} </h4>
 
-<span style="padding-left:10px" class="glyphicon glyphicon-thumbs-up"> Like
-</span>
-<span style="padding-left:10px" class="glyphicon glyphicon-thumbs-down"> Dislike
-</span>
-<br>
+    <h2> {{ audio.title }} </h2>
+    <h4> {{user.username}} </h4>
 
+    <span style="padding-left:10px" class="glyphicon glyphicon-thumbs-up"> {{ likes }} Like 
+    </span>
+    <span style="padding-left:10px" class="glyphicon glyphicon-thumbs-down"> Dislike
+    </span>
 
+    <comments id="fileId"></comments>
 
-<div ng-controller="CommentController">
-    <h2> {{ CommentController.comment }} </h2>
-</div>
-
-
-
-
-
-
-
-
-
-
-<div style="padding-left:10px">
-    <form name="commentForm" class="form-inline">
-        <div class="form-group">
-            <img id="element1" src="apple-touch-icon.png" class="img-rounded" width="30" height="30" />
-            <input id="element2" ng-model="commentCtrl.comment.body" type="text" class="form-control" placeholder="Comment" />
-            <button ng-click="commentFile()" id="element3" type="submit" class="btn btn-default">Add</button>
-            <li ng-repeat="comment in file.comments">
-                <blockquote>
-                    {{comment.body}}
-                    <cite class="clearfix">-{{comment.user}}</cite>
-                </blockquote>
-            </li>
-
-            <style>
-                #element1 {
-                    display: inline-block;
-                }
-
-                #element2 {
-                    display: inline-block;
-                    width: auto;
-                }
-
-                #element3 {
-                    display: inline-block;
-                }
-            </style>
-
-        </div>
-    </form>
 </div>

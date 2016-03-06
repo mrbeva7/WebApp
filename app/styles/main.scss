@@ -249,3 +249,32 @@ $navcolor: #BB1F3C;
         }
     }
 }
+
+.commentsSection {
+    ul {
+        padding: 0;
+
+        li {
+            display: block;
+
+            blockquote {
+                border: none;
+                margin: 0;
+                padding: 5px 0;
+
+                cite {
+                    float: left;
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+
+    .commentField {
+        width: calc(100% - 70px);
+    }
+    .sendButton {
+        float: right;
+        width: 65px;
+    }
+}

@@ -15,8 +15,8 @@ angular.module('mobileWebApp')
                     $('#successfullLoginModal').modal();
                 })
                 .catch(function (error) {
-                    $('#failedLoginModal .error-msg').text(error);
-                    $('#failedLoginModal').modal();
+                    $('#errorModal .error-msg').text(error);
+                    $('#errorModal').modal();
                 });
         };
 

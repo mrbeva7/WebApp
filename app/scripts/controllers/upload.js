@@ -60,8 +60,8 @@ angular.module('mobileWebApp')
                     $('#successfulUpload').modal();
                 })
                 .catch(function (error) {
-                    $('#failedUpload .error-msg').text(error);
-                    $('#failedUpload').modal();
+                    $('#errorModal .error-msg').text(error);
+                    $('#errorModal').modal();
                 });
         }
 

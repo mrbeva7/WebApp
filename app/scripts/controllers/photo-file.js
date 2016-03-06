@@ -19,6 +19,7 @@ app.controller('PhotoFileController', ['$scope', '$http', '$routeParams', functi
         });
     });
 
+    $scope.fileId = $routeParams.fileId;
     $scope.mediaPath = 'http://util.mw.metropolia.fi/uploads/';
 
   }]);

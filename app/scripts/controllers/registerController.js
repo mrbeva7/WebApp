@@ -16,8 +16,8 @@ angular.module('mobileWebApp')
                     $('#successfullRegistrationModal').modal();
                 })
                 .catch(function (error) {
-                    $('#failedRegistrationModal .error-msg').text(error);
-                    $('#failedRegistrationModal').modal();
+                    $('#errorModal .error-msg').text(error);
+                    $('#errorModal').modal();
                 });
         };
     });
