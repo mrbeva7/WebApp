@@ -1,13 +1,12 @@
 <div class="container ">
 
-    <div class="row">
-        <div class="col-md-6 col-xs-12 marginTop" ng-repeat="video in videos">
+    <div ng-repeat="video in videos">
 
-            <a ng-href='#/video/{{ video.fileId }}'>
-                <img ng-src="{{ mediaPath + video.thumbNails.medium }}" alt="{{ video.title }}">
-                <h2>{{video.title}}</h2>
-            </a>
+        <a ng-href='#/video/{{ video.fileId }}'>
+            <img style="max-width: 100%;" ng-src="{{ mediaPath + video.thumbNails.medium }}" alt="{{ video.title }}">
+            <h2>{{video.title}}</h2>
+            <hr>
+        </a>
 
-        </div>
     </div>
 </div>
