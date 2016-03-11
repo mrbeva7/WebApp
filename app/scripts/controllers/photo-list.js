@@ -5,7 +5,6 @@ angular.module('mobileWebApp')
         var baseUrl = 'http://util.mw.metropolia.fi/ImageRekt/api/v2/';
 
         $http.get(baseUrl + "files/type/image").then(function (response) {
-            console.log(response);
             $scope.images = response.data;
         });
 
