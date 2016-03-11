@@ -4,12 +4,12 @@ var app = angular.module('mobileWebApp', ['ngRoute']);
 app.config(function ($routeProvider) {
     $routeProvider
         .when('/', {
-            templateUrl: '/views/main.html',
+            templateUrl: 'views/main.html',
             controller: 'MainController',
             active: 'main'
         })
         .when('/video', {
-            templateUrl: '/views/video-list.html',
+            templateUrl: 'views/video-list.html',
             controller: 'VideoListController',
             active: 'video'
         })
@@ -19,32 +19,31 @@ app.config(function ($routeProvider) {
             active: 'video'
         })
         .when('/music', {
-            templateUrl: '/views/music-list.html',
+            templateUrl: 'views/music-list.html',
             controller: 'MusicListController',
             active: 'music'
         })
         .when('/music/:fileId', {
-            templateUrl: '/views/music-file.html',
+            templateUrl: 'views/music-file.html',
             controller: 'MusicFileController',
             active: 'music'
         })
         .when('/photo', {
-            templateUrl: '/views/photo-list.html',
+            templateUrl: 'views/photo-list.html',
             controller: 'PhotoListController',
             active: 'photo'
         })
         .when('/photo/:fileId', {
-            templateUrl: '/views/photo-file.html',
+            templateUrl: 'views/photo-file.html',
             controller: 'PhotoFileController',
             active: 'photo'
         })
         .when('/upload', {
-            templateUrl: '/views/upload.html',
+            templateUrl: 'views/upload.html',
             controller: 'UploadController',
             active: 'upload'
         })
-
-    .otherwise('/');
+        .otherwise('/');
 });
 
 app.filter('trusted', ['$sce', function ($sce) {
